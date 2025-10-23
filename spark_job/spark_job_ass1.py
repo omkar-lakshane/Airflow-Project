@@ -18,8 +18,8 @@ def processed_data(env, bq_project, bq_dataset, tables):
         spark = SparkSession.builder.appName("GCPDataProcJob").getOrCreate()
 
         # Define input path
-        emp_data = f'gs://airflow_assignment_part1/source_{env}/raw_data/employee.csv'
-        dept_data = f'gs://airflow_assignment_part1/source_{env}/raw_data/department.csv'
+        emp_data = f'gs://airflow_assignment_part1/source_{env}/raw_data/employee/employee.csv'
+        dept_data = f'gs://airflow_assignment_part1/source_{env}/raw_data/department/department.csv'
 
         # Define bucket and data set variables
         # bucket = 'airflow_assignment_part1'
