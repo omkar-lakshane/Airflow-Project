@@ -1,0 +1,7 @@
+{
+    "env": "dev",
+    "gcs_bucket": "airflow_assignment_part1",
+    "bq_project": "glassy-totality-475309-u4",
+    "bq_dataset": "airflow_asgn_1_dev",
+    "tables" : "final_data_dev"
+}
