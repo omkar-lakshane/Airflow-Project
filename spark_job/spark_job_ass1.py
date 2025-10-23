@@ -67,6 +67,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+
     processed_data(
         env=args.env,
         bq_project=args.bq_project,
