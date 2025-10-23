@@ -12,7 +12,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-def processed_data(env, bq_project, bq_dataset, joined_data, final_data_dev):
+def processed_data(env, bq_project, bq_dataset, joined_data, tables):
     try:
 
         spark = SparkSession.builder.appName("GCPDataProcJob").getOrCreate()
@@ -40,10 +40,10 @@ def processed_data(env, bq_project, bq_dataset, joined_data, final_data_dev):
         # Write output
         # joined_data.write.csv(final_data, mode="overwrite", header=True)
 
-        logger.info(f"Writing final data to BigQuery table: {bq_project}:{bq_dataset}.{final_data_dev}")
+        logger.info(f"Writing final data to BigQuery table: {bq_project}:{bq_dataset}.{tables}")
         joined_data.write \
             .format("bigquery") \
-            .option("table", f"{bq_project}:{bq_dataset}.{final_data_dev}") \
+            .option("table", f"{bq_project}:{bq_dataset}.{tables}") \
             .option("writeMethod", "direct") \
             .mode("overwrite") \
             .save()
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     parser.add_argument("--env", required=True, help="Environment (e.g., dev, prod)")
     parser.add_argument("--bq_project", required=True, help="BigQuery project ID")
     parser.add_argument("--bq_dataset", required=True, help="BigQuery dataset name")
-    parser.add_argument("--final_data_dev", required=True, help="BigQuery table for final data")
+    parser.add_argument("--tables", required=True, help="BigQuery table for final data")
 
     args = parser.parse_args()
 
@@ -72,5 +72,5 @@ if __name__ == "__main__":
         env=args.env,
         bq_project=args.bq_project,
         bq_dataset=args.bq_dataset,
-        final_data_dev=args.final_data_dev
+        tables=args.tables
     )
