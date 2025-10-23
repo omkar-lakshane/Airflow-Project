@@ -12,7 +12,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-def processed_data(env, bq_project, bq_dataset, joined_data, tables):
+def processed_data(env, bq_project, bq_dataset, tables):
     try:
 
         spark = SparkSession.builder.appName("GCPDataProcJob").getOrCreate()
