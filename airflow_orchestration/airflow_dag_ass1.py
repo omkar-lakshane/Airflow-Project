@@ -64,7 +64,7 @@ with DAG (
         # Task 2: Submit PySpark job to Dataproc Serverless
     batch_details = {
         "pyspark_batch": {
-            "main_python_file_uri": f"gs://{gcs_bucket}/spark_job/spark_job.py",  # Main Python file
+            "main_python_file_uri": f"gs://{gcs_bucket}/spark_job/spark_job_ass1.py",  # Main Python file
             "python_file_uris": [],  # Python WHL files
             "jar_file_uris": [],  # JAR files
             "args": [
